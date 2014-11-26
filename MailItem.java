@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class MailItem here.
+ * Esta clase representa un mensaje de email
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -17,15 +17,15 @@ public class MailItem
 /**
  * constructor que crea el objeto en funcion de los parametros asignados
  */
-public MailItem(String fromMail, String toMail, String sms)
+public MailItem(String from, String to, String message)
 {
-    from = fromMail;
-    to = toMail;
-    message = sms;
+    this.from = from;
+    this.to = to;
+    this.message = message;
 }
 
 /**
- * Metodo que devuelve quien envia el mail
+ * Metodo que devuelve quien envia el mail( la dirección de origen)
  */
 public String getFrom()
 {
@@ -46,7 +46,7 @@ public String getMessage()
     return message;
 }
 /**
- * Metodo que imprime por pantalla el mail
+ * Metodo que imprime por pantalla el mail.dirección de origen y destino y contenido
  */
 public void printEmail()
 {

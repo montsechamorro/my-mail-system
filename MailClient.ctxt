@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.params=newServer\ newUser
+comment0.params=server\ user
 comment0.target=MailClient(MailServer,\ java.lang.String)
 comment0.text=\r\n\ Constructor\ que\ crea\ objeto\ MailClient\ por\ medio\ de\ parametro\r\n
 comment1.params=

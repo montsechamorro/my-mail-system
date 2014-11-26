@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class MailClient here.
+ * Representa un cliente de correo electrónico
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -15,10 +15,10 @@ public class MailClient
     /**
      * Constructor que crea objeto MailClient por medio de parametro
      */
-    public MailClient(MailServer newServer, String newUser)
+    public MailClient(MailServer server, String user)
     {
-        server = newServer;
-        user = newUser;
+        this.server = server;
+        this.user = user;
     }
 
     /**
@@ -35,7 +35,7 @@ public class MailClient
      */
     public void printNextMailItem()
     {
-        MailItem email = server.getNextMailItem(user);
+        MailItem email = server.getNextMailItem(user); // creamos la variable local para guardar lo que nos devuelve
         if(email == null){
             System.out.println("No hay mas mensajes");
         }
@@ -50,7 +50,7 @@ public class MailClient
      */
     public void sendMailItem(String toMail, String sms)
     {
-        MailItem email = new MailItem(user, toMail, sms);
+        MailItem email = new MailItem(user, toMail, sms); // creamos el objeto MailItem(3 parametros). user lo cogemos de la clase mailClient
         server.post(email);
     }
 
