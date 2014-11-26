@@ -48,9 +48,9 @@ public class MailClient
     /**
      * metodo que crea un email, basandose en los parametros y lo envia al servidor del cliente
      */
-    public void sendMailItem(String toMail, String sms)
+    public void sendMailItem(String to, String message, String subject)
     {
-        MailItem email = new MailItem(user, toMail, sms); // creamos el objeto MailItem(3 parametros). user lo cogemos de la clase mailClient
+        MailItem email = new MailItem(user, to, message, subject); // creamos el objeto MailItem(3 parametros). user lo cogemos de la clase mailClient
         server.post(email);
     }
 
