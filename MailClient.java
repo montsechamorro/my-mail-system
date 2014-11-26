@@ -53,6 +53,13 @@ public class MailClient
         MailItem email = new MailItem(user, to, message, subject); // creamos el objeto MailItem(3 parametros). user lo cogemos de la clase mailClient
         server.post(email);
     }
+    /**
+     * metodo que nos indica cuantos email tenemos en el servidor y se muestra por pantalla
+     */
+    public int howManyMailItems()
+    {
+        return server.howManyMailItems(user);
+    }
 
 }
 
