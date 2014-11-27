@@ -60,6 +60,19 @@ public class MailClient
     {
         return server.howManyMailItems(user);
     }
+    /**
+     * metodo que contesta automaticamente al emisor indicando q estamos de vacaciones y contiene el email recibido
+     */
+    public void getNextMailItemAndAutorespon()
+    {
+        MailItem email=server.getNextMailItem(user);
+        String newFrom = email.getFrom();
+        String newSubject = "RE: " + email.getSubject();
+        String newMessage = (email.getMessage() + "Estoy de vacaciones");
+        sendMailItem (newFrom, newSubject, newMessage);
+      
+    }
+    }
+        
 
-}
 
