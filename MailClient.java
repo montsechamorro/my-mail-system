@@ -58,8 +58,9 @@ public class MailClient
      */
     public void howManyMailItems()
     {
-        int numberOfMails = server.howManyMailItems(user);
-        System.out.println("Tiene " + numberOfMails + " emails en el servidor.");
+        
+        System.out.println("Tiene " + server.howManyMailItems(user) +
+                            " emails en el servidor.");
     }
     /**
      * metodo que contesta automaticamente al emisor indicando q estamos de vacaciones y contiene el email recibido
