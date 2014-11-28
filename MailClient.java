@@ -68,11 +68,18 @@ public class MailClient
     public void getNextMailItemAndAutorespon()
     {
         MailItem email=server.getNextMailItem(user);
-        String newFrom = email.getFrom();
-        String newSubject = "RE: " + email.getSubject();
-        String newMessage = (email.getMessage() + "Estoy de vacaciones");
-        sendMailItem (newFrom, newSubject, newMessage);
-      
+        if(email != null)
+        {
+             String newTo = email.getFrom();// es to y no from como puse yo, pq el que lo envio se convierte en quien lo recibe
+            String newSubject = "RE: " + email.getSubject();
+            String newMessage = "Estoy de vacaciones.\n" + email.getMessage(); // va delante la respuesta----//   \n es un salto de linea
+            MailItem autorespond = new MailItem(user, newTo, newSubject, newMessage); 
+            server.post(autorespond);
+        }
+        else
+        {
+            
+        }
     }
     }
         
