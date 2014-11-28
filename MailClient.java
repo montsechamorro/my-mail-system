@@ -54,11 +54,12 @@ public class MailClient
         server.post(email);
     }
     /**
-     * metodo que nos indica cuantos email tenemos en el servidor y se muestra por pantalla
+     * metodo que imprime por pantalla los mensajes que tiene el usuario que esta utilizando el cliente
      */
-    public int howManyMailItems()
+    public void howManyMailItems()
     {
-        return server.howManyMailItems(user);
+        int numberOfMails = server.howManyMailItems(user);
+        System.out.println("Tiene " + numberOfMails + " emails en el servidor.");
     }
     /**
      * metodo que contesta automaticamente al emisor indicando q estamos de vacaciones y contiene el email recibido
