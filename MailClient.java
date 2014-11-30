@@ -11,6 +11,8 @@ public class MailClient
     private MailServer server;
     // dirección de correo del usuario, del cliente emisor
     private String user;
+    // guarda los email, bandeja de entradra
+    private MailItem lastEmail;
 
     /**
      * Constructor que crea objeto MailClient por medio de parametro
@@ -19,14 +21,17 @@ public class MailClient
     {
         this.server = server;
         this.user = user;
+        lastEmail = null;
+       
     }
 
     /**
-     * Metodo que recupera del servidor el siguiente email que tiene el usuario y devuelve dicho objeto
+     * Metodo que recupera del servidor el siguiente email que tiene el usuario y devuelve dicho email
      */
     public MailItem getNextMailItem()
     {
-        return server.getNextMailItem(user);
+        lastEmail = server.getNextMailItem(user);
+        return lastEmail;
     }
 
     /**
@@ -67,21 +72,34 @@ public class MailClient
      */
     public void getNextMailItemAndAutorespon()
     {
-        MailItem email=server.getNextMailItem(user);
+        MailItem email=server.getNextMailItem(user);  /// no podriamos poner en el if otra vez el metodo de recuperar email pq sino nos devolveria supuestamente el
+                                                      /// segundo email, no el primero por segunda vez.
         if(email != null)
         {
-             String newTo = email.getFrom();// es to y no from como puse yo, pq el que lo envio se convierte en quien lo recibe
+            String newTo = email.getFrom();// es to y no from como puse yo, pq el que lo envio se convierte en quien lo recibe
             String newSubject = "RE: " + email.getSubject();
             String newMessage = "Estoy de vacaciones.\n" + email.getMessage(); // va delante la respuesta----//   \n es un salto de linea
             MailItem autorespond = new MailItem(user, newTo, newSubject, newMessage); 
             server.post(autorespond);
         }
+       
+    }
+    /**
+     * metodo que imprime por pantalla tantas veces como queramos el ultimo email recibido. si no hay mensajes informa de ello
+     */
+    public void printLastMailItem()
+    {
+                  
+        if(lastEmail != null)
+        {
+             lastEmail.printEmail();
+        }
         else
         {
-            
+           System.out.println("No tiene mensajes nuevos");  
+                    
         }
-    }
     }
         
 
-
+}
