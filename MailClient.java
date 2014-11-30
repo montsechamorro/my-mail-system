@@ -13,6 +13,14 @@ public class MailClient
     private String user;
     // guarda los email, bandeja de entradra
     private MailItem lastEmail;
+    // emails enviados
+    private int sendMailCount;
+    // email recibidos
+    private int receiveMailCount;
+    // contador de email de spam recibidos
+    private int receiveSpamCount;
+    //dirección de quien nos ha enviado el correo mas largo
+    private String longestFrom;
 
     /**
      * Constructor que crea objeto MailClient por medio de parametro
@@ -22,6 +30,10 @@ public class MailClient
         this.server = server;
         this.user = user;
         lastEmail = null;
+        sendMailCount = 0;
+        receiveMailCount = 0;
+        receiveSpamCount = 0;
+        longestFrom = "";
        
     }
 
@@ -99,6 +111,16 @@ public class MailClient
            System.out.println("No tiene mensajes nuevos");  
                     
         }
+    }
+    /**
+     * muestra estadisticas, emails enviados, recibidos, spam y dirección de correo que nos ha enviado el mensaje mas largo
+     */
+    public void printStatistics()
+    {
+        System.out.println("Ha recibido " + receiveMailCount + " emails");
+        System.out.println("De ellos el " + ((receiveSpamCount/receiveMailCount)*100) + " % eran spam");
+        System.out.println("Ha enviado " + sendMailCount + " emails");
+        System.out.println("La dirección de la persona que nos envio el email mas largo es " + longestFrom);
     }
         
 
